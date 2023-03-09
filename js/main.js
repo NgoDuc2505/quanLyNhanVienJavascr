@@ -23,9 +23,9 @@ function checkValid (fullName, email, pass, date,income, position, workTime){
     var isValid = true;
     isValid &= validation.checkEmpty(fullName, "#tbTen", "Hãy nhập họ và tên!", "")&& validation.checkName(fullName,"#tbTen","Hãy nhập tên hợp lệ!");
     isValid &= validation.checkEmpty(email, "#tbEmail", "Hãy nhập email!", "")&& validation.checkEmail(email, "#tbEmail", "Hãy nhập email hợp lệ!");
-    isValid &= validation.checkEmpty(pass, "#tbMatKhau", "Hãy nhập mật khẩu!", "")&& validation.checkPass(pass, "#tbMatKhau", "Mật khẩu phải có 6-10 kí tự, phải chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt!");
-    isValid &= validation.checkEmpty(date, "#tbNgay", "Hãy nhập ngày!", "");
-    isValid &= validation.checkEmpty(income, "#tbLuongCB", "Hãy nhập lương cơ bản!", "")&& validation.checkBaseIncome(income,"#tbLuongCB", "Lương nhập từ 1,000,000 - 20,000,000" );
+    isValid &= validation.checkEmpty(pass, "#tbMatKhau", "Hãy nhập mật khẩu!", "")&& validation.checkPass(pass, "#tbMatKhau", "Mật khẩu phải có 6-10 kí tự, phải chứa ít nhất 1 ký tự số,1 ký tự thường, 1 ký tự in hoa, 1 ký tự đặc biệt(!@#$%^&*)");
+    isValid &= validation.checkEmpty(date, "#tbNgay", "Hãy nhập ngày!", "")&& validation.checkDate(date, "#tbNgay", "Hãy nhập ngày theo định dạng mm/dd/yyyy!", "Hãy nhập năm hợp lệ!");
+    isValid &= validation.checkEmpty(income, "#tbLuongCB", "Hãy nhập lương cơ bản!", "")&& validation.checkBaseIncome(income,"#tbLuongCB", "Lương nhập từ 1000000 - 20000000" );
     isValid &= validation.checkEmpty(position, "#tbChucVu", "Hãy chọn chức vụ!","Chọn chức vụ");
     isValid &= validation.checkEmpty(workTime, "#tbGiolam", "Hãy nhập giờ làm!","")&& validation.checkTime(workTime, "#tbGiolam","Số giờ làm trong tháng từ 80 - 200 giờ!");
     return isValid;
@@ -83,7 +83,7 @@ function addEmploy() {
     var workTime = getMyEle("#gioLam").value;
    //TODO VALIDATION!-----------------------ABOVE
    var isValidUser = true;
-   isValidUser = validation.checkEmpty(user, "#tbTKNV", "Hãy nhập tài khoản!", "") && validation.checkUser(em.mainArr, "#tbTKNV",user )&& validation.checkUserInput(user,"#tbTKNV","Tài khoản phải từ 4-6 ký số!");
+   isValidUser = validation.checkEmpty(user, "#tbTKNV", "Hãy nhập tài khoản!", "") && validation.checkUser(em.mainArr, "#tbTKNV",user )&& validation.checkUserInput(user,"#tbTKNV","Tài khoản phải từ 4-6 ký số (Ví dụ:000001)");
     if( checkValid(fullName, email, pass, date,income, position, workTime) && isValidUser){
         var eo = new Employee(user, fullName, email, pass, date,Number(income), position, workTime)
         eo.total();
@@ -103,8 +103,6 @@ function deleteObject(data) {
 
 function showDta(data) {
     changeInHtml("block","none","Cập nhật thông tin")
-    // getMyEle("#btnCapNhat").style.display = "block";
-    // getMyEle("#btnThemNV").style.display = "none"
     clearAlert();
     var index = em.findIndexObject(data);
     if (index != -1) {

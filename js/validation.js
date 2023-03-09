@@ -89,4 +89,24 @@ function ValiDATION() {
             return false;
         }
     }
+    this.checkDate = function(datainput, spanID, message, messageYear){
+        var datePattern = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+        var daTe = new Date(datainput);
+        var currentDate = new Date();
+        var year = daTe.getFullYear();
+        if (datainput.match(datePattern)){
+            if(currentDate.getFullYear()-year >= 0){
+                getMyEle(spanID).style.display = "none"
+                return true;
+            }else{
+                getMyEle(spanID).style.display = "block"
+                getMyEle(spanID).innerHTML = messageYear;
+                return false;
+            }
+        } else {
+            getMyEle(spanID).style.display = "block"
+            getMyEle(spanID).innerHTML = message;
+            return false;
+        }
+    }
 }
