@@ -40,7 +40,7 @@ function showInTable(data) {
         <td>${eo.email}</td>
         <td>${eo.date}</td>
         <td>${eo.position}</td>
-        <td>${eo.totalIncome} vnd </td>
+        <td>${eo.totalIncome.toLocaleString()} vnd </td>
         <td>${eo.rankOut}</td>
         <td>
             <button onclick = showDta('${eo.user}') data-toggle="modal" data-target="#myModal" class="btn btn-success my-2">Xem</button>
