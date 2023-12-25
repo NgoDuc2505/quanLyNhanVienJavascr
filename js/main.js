@@ -143,3 +143,4 @@ function searchEO(){
     var result = em.search(rankInput);
     showInTable(result);
 } getMyEle("#searchName").onkeyup = searchEO;
+
